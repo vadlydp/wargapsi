@@ -1,430 +1,125 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WargaPSI - Sistem Informasi RT/RW Digital</title>
-  <!-- Tailwind CSS via CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- React 18 & React-DOM UMD (Production Version) -->
-  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>WargaKita — Platform Warga</title>
 <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    }
-    .custom-scrollbar::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
-    }
-    .custom-scrollbar::-webkit-scrollbar-thumb {
-      background: #cbd5e1;
-      border-radius: 4px;
-    }
-  </style>
+:root{--navy:#14243a;--navy2:#1d3553;--blue:#3478f6;--cyan:#eaf2ff;--bg:#f4f7fb;--text:#1d2939;--muted:#718096;--line:#e6ebf2;--green:#159b72;--orange:#e69b32;--red:#d9534f;--white:#fff;--shadow:0 8px 28px #1b365414}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.5 Inter,Segoe UI,Arial,sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer;border:0}.app{display:flex;min-height:100vh}.sidebar{width:250px;background:var(--navy);color:#fff;padding:24px 16px;display:flex;flex-direction:column;position:fixed;inset:0 auto 0 0;z-index:5}.brand{display:flex;align-items:center;gap:11px;padding:0 10px 28px}.brandmark{width:39px;height:39px;border-radius:12px;background:linear-gradient(135deg,#4c91ff,#54d6bd);display:grid;place-items:center;font-size:21px}.brand b{font-size:17px;letter-spacing:.2px}.brand small{display:block;color:#9fb0c6;font-size:11px}.navlabel{color:#8194ac;font-size:10px;font-weight:700;letter-spacing:1.3px;padding:12px 12px 7px}.nav button{width:100%;display:flex;align-items:center;gap:12px;padding:11px 13px;margin:2px 0;border-radius:9px;color:#c5d0df;background:transparent;text-align:left}.nav button:hover,.nav button.active{background:#ffffff17;color:#fff}.nav .ico{width:20px;text-align:center;font-size:17px}.sidebottom{margin-top:auto;border-top:1px solid #ffffff20;padding:16px 10px 0;color:#aebbd0;font-size:11px}.main{margin-left:250px;width:calc(100% - 250px);min-width:0}.topbar{height:72px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 34px;position:sticky;top:0;z-index:4}.crumb{color:var(--muted);font-size:12px}.topright{display:flex;align-items:center;gap:15px}.pill{background:#edf7f3;color:#13835f;padding:6px 10px;border-radius:30px;font-size:11px;font-weight:700}.avatar{width:34px;height:34px;border-radius:50%;background:#e4edff;color:#2f65c5;display:grid;place-items:center;font-weight:700}.content{padding:30px 34px;max-width:1500px;margin:auto}.welcome{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:24px;gap:16px}.welcome h1{margin:0 0 5px;font-size:25px;letter-spacing:-.5px}.welcome p{margin:0;color:var(--muted)}.actions{display:flex;gap:8px;flex-wrap:wrap}.btn{padding:9px 14px;border-radius:8px;background:#fff;border:1px solid var(--line);color:var(--text);font-weight:600}.btn.primary{background:var(--blue);border-color:var(--blue);color:#fff}.btn.soft{background:var(--cyan);border-color:transparent;color:#2863c6}.btn.danger{color:var(--red)}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-bottom:20px}.stat,.panel,.card{background:#fff;border:1px solid var(--line);border-radius:13px;box-shadow:var(--shadow)}.stat{padding:18px 19px}.stathead{display:flex;justify-content:space-between;color:var(--muted);font-size:12px}.staticon{width:33px;height:33px;border-radius:10px;background:#edf3ff;display:grid;place-items:center;font-size:17px}.stat strong{display:block;font-size:25px;margin:12px 0 1px;letter-spacing:-.5px}.stat small{color:var(--muted)}.grid2{display:grid;grid-template-columns:1.35fr 1fr;gap:16px}.panel{padding:20px;margin-bottom:16px;min-width:0}.panelhead{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px}.panelhead h3{font-size:15px;margin:0}.muted{color:var(--muted)}.mini{font-size:11px;color:var(--muted)}.bars{display:flex;align-items:end;gap:13px;height:155px;padding:10px 8px 0;border-bottom:1px solid var(--line)}.barcol{height:100%;flex:1;display:flex;flex-direction:column;justify-content:end;align-items:center;gap:7px}.bar{width:min(30px,70%);background:linear-gradient(180deg,#69a0ff,#3478f6);border-radius:6px 6px 2px 2px;min-height:3px}.barcol small{color:var(--muted);font-size:10px}.activity{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid #f0f2f6}.activity:last-child{border:0}.dot{width:9px;height:9px;border-radius:50%;background:var(--blue);margin-top:6px;flex:none}.activity b{font-size:12px}.activity p{margin:2px 0;color:var(--muted);font-size:11px}.section{display:none}.section.active{display:block}.toolbar{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-bottom:14px}.search{padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:#fff;min-width:220px;outline:none}.search:focus,input:focus,select:focus,textarea:focus{border-color:#82aaff;box-shadow:0 0 0 3px #3478f61a;outline:none}.tablewrap{overflow:auto;border:1px solid var(--line);border-radius:10px}table{width:100%;border-collapse:collapse;min-width:700px;background:#fff}th,td{padding:12px 14px;text-align:left;border-bottom:1px solid #edf0f5;font-size:12px}th{background:#f8faff;color:#718096;font-size:10px;text-transform:uppercase;letter-spacing:.6px}tr:last-child td{border:0}.tag{display:inline-block;padding:4px 8px;border-radius:30px;background:#eef3ff;color:#346bc4;font-size:10px;font-weight:700}.tag.green{background:#e8f7f0;color:#16825e}.tag.orange{background:#fff4e4;color:#a66a10}.tag.red{background:#ffeded;color:#bd4848}.empty{text-align:center;padding:35px;color:var(--muted)}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.eventcard{padding:17px;border:1px solid var(--line);border-radius:11px;background:#fff}.eventdate{display:inline-block;background:#eef4ff;color:#3269c6;padding:7px 10px;border-radius:8px;font-weight:700;font-size:11px}.eventcard h3{font-size:14px;margin:12px 0 5px}.eventcard p{font-size:12px;color:var(--muted);margin:0 0 13px}.infocard{padding:16px;border:1px solid var(--line);border-radius:10px;background:#fff;margin-bottom:10px}.infocard h3{font-size:14px;margin:0 0 5px}.infocard p{margin:0;color:var(--muted);font-size:12px}.modal{display:none;position:fixed;inset:0;background:#0c1b2e88;z-index:10;align-items:center;justify-content:center;padding:16px}.modal.show{display:flex}.modalbox{width:min(560px,100%);max-height:90vh;overflow:auto;background:#fff;border-radius:15px;padding:22px;box-shadow:0 20px 70px #0003}.modalhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}.modalhead h2{font-size:18px;margin:0}.close{background:#f1f4f8;border-radius:8px;padding:6px 10px}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field{display:flex;flex-direction:column;gap:5px}.field.full{grid-column:1/-1}.field label{font-size:11px;font-weight:700;color:#536176}.field input,.field select,.field textarea{width:100%;border:1px solid var(--line);border-radius:8px;padding:10px;background:#fff}.field textarea{min-height:75px;resize:vertical}.modalactions{display:flex;justify-content:flex-end;gap:8px;margin-top:18px}.notice{background:#fff8e9;border:1px solid #f5e5bf;color:#80601d;border-radius:9px;padding:12px 14px;font-size:12px;margin-bottom:16px}.footer{text-align:center;color:#9aa5b4;font-size:10px;padding:18px}.mobilehead{display:none}
+@media(max-width:1000px){.stats{grid-template-columns:repeat(2,1fr)}.grid2{grid-template-columns:1fr}.cards{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:700px){.sidebar{width:70px;padding:16px 8px}.brand{padding:0 7px 20px}.brand b,.brand small,.navlabel,.nav button span:not(.ico),.sidebottom{display:none}.nav button{justify-content:center;padding:12px 5px}.nav .ico{font-size:19px}.main{margin-left:70px;width:calc(100% - 70px)}.topbar{padding:0 15px;height:60px}.content{padding:20px 14px}.welcome{display:block}.welcome h1{font-size:21px}.welcome .actions{margin-top:14px}.stats{gap:9px}.stat{padding:13px}.stat strong{font-size:21px}.cards{grid-template-columns:1fr}.formgrid{grid-template-columns:1fr}.field.full{grid-column:auto}.search{min-width:0;flex:1;width:100%}.toolbar .btn{flex:1}.pill{display:none}}
+</style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased">
-  <div id="root"></div>
+<body>
+<div class="app">
+<aside class="sidebar">
+ <div class="brand"><div class="brandmark"><img src="LOGO PSI.png" alt="Logo WargaPSI"></div><div><b>WargaPSI</b><small>Platform Warga</small></div></div>
+ <div class="navlabel">MENU UTAMA</div>
+ <nav class="nav">
+  <button class="active" data-page="dashboard"><span class="ico">▦</span><span>Dashboard</span></button>
+  <button data-page="warga"><span class="ico">♙</span><span>Data Warga</span></button>
+  <button data-page="kas"><span class="ico">▤</span><span>Kas Warga</span></button>
+  <button data-page="kegiatan"><span class="ico">◷</span><span>Kegiatan Warga</span></button>
+  <button data-page="info"><span class="ico">◉</span><span>Papan Informasi</span></button>
+ </nav>
+ <div class="navlabel">LAYANAN TAMBAHAN</div>
+ <nav class="nav">
+  <button data-page="pengaduan"><span class="ico">☏</span><span>Aspirasi & Pengaduan</span></button>
+  <button data-page="dokumen"><span class="ico">▧</span><span>Dokumen Lingkungan</span></button>
+ </nav>
+ <div class="sidebottom">WargaPSI v1.0<br>Portal administrasi lingkungan</div>
+</aside>
+<main class="main">
+ <header class="topbar"><div><b id="topTitle">Dashboard</b><div class="crumb">Portal warga / <span id="crumb">Ringkasan</span></div></div><div class="topright"><span class="pill">● Sistem lokal aktif</span><div class="avatar">AD</div></div></header>
+ <div class="content">
+  <section class="section active" id="dashboard">
+   <div class="welcome"><div><h1>Selamat datang di WargaPSI 👋</h1><p>Ringkasan administrasi dan aktivitas lingkungan perumahan.</p></div><div class="actions"><button class="btn" onclick="exportAll()">⇩ Backup data</button><button class="btn primary" onclick="openModal('warga')">＋ Tambah warga</button></div></div>
+   <div class="stats">
+    <div class="stat"><div class="stathead">Total Kepala Keluarga <span class="staticon">♙</span></div><strong id="statWarga">0</strong><small>Data keluarga terdaftar</small></div>
+    <div class="stat"><div class="stathead">Saldo Kas Saat Ini <span class="staticon">▤</span></div><strong id="statSaldo">Rp0</strong><small>Akumulasi pemasukan & pengeluaran</small></div>
+    <div class="stat"><div class="stathead">Kegiatan Mendatang <span class="staticon">◷</span></div><strong id="statEvent">0</strong><small>Agenda yang akan berlangsung</small></div>
+    <div class="stat"><div class="stathead">Aspirasi Terbuka <span class="staticon">☏</span></div><strong id="statAspirasi">0</strong><small>Perlu tindak lanjut pengurus</small></div>
+   </div>
+   <div class="grid2">
+    <div class="panel"><div class="panelhead"><h3>Arus Kas Warga</h3><span class="mini">6 bulan terakhir · ilustrasi</span></div><div class="bars" id="cashBars"></div><div class="mini" style="margin-top:12px">Catatan: grafik akan mengikuti transaksi yang dimasukkan ke aplikasi.</div></div>
+    <div class="panel"><div class="panelhead"><h3>Aktivitas Terbaru</h3><span class="mini">Pembaruan data</span></div><div id="recent"></div></div>
+   </div>
+   <div class="panel"><div class="panelhead"><h3>Mulai kelola lingkungan</h3><span class="mini">Akses cepat</span></div><div class="actions"><button class="btn soft" onclick="go('warga')">Kelola data warga</button><button class="btn soft" onclick="go('kas')">Catat transaksi kas</button><button class="btn soft" onclick="go('kegiatan')">Buat kegiatan</button><button class="btn soft" onclick="go('info')">Terbitkan informasi</button></div></div>
+  </section>
+  <section class="section" id="warga">
+   <div class="welcome"><div><h1>Data Warga</h1><p>Direktori kepala keluarga dan penghuni perumahan.</p></div><button class="btn primary" onclick="openModal('warga')">＋ Tambah data warga</button></div>
+   <div class="notice">Jaga kerahasiaan data pribadi warga. Batasi akses hanya untuk pengurus yang berwenang.</div>
+   <div class="toolbar"><input class="search" id="searchWarga" placeholder="Cari nama, blok, nomor rumah..." oninput="renderWarga()"><select class="search" id="filterStatus" onchange="renderWarga()"><option value="">Semua status</option><option>Menetap</option><option>Kontrak</option><option>Kosong</option></select><button class="btn" onclick="exportCSV('warga')">⇩ Ekspor CSV</button></div>
+   <div class="tablewrap"><table><thead><tr><th>Nama kepala keluarga</th><th>Alamat / Blok</th><th>No. HP</th><th>Jumlah penghuni</th><th>Status hunian</th><th>Aksi</th></tr></thead><tbody id="wargaRows"></tbody></table></div>
+  </section>
+  <section class="section" id="kas">
+   <div class="welcome"><div><h1>Laporan Kas Warga</h1><p>Transparansi pemasukan, pengeluaran, dan saldo kas lingkungan.</p></div><button class="btn primary" onclick="openModal('kas')">＋ Catat transaksi</button></div>
+   <div class="stats"><div class="stat"><div class="stathead">Total Pemasukan</div><strong id="kasMasuk">Rp0</strong></div><div class="stat"><div class="stathead">Total Pengeluaran</div><strong id="kasKeluar">Rp0</strong></div><div class="stat"><div class="stathead">Saldo Kas</div><strong id="kasSaldo">Rp0</strong></div><div class="stat"><div class="stathead">Jumlah Transaksi</div><strong id="kasCount">0</strong></div></div>
+   <div class="toolbar"><input class="search" id="searchKas" placeholder="Cari keterangan transaksi..." oninput="renderKas()"><select class="search" id="filterKas" onchange="renderKas()"><option value="">Semua jenis</option><option value="Masuk">Pemasukan</option><option value="Keluar">Pengeluaran</option></select><button class="btn" onclick="exportCSV('kas')">⇩ Ekspor CSV</button></div>
+   <div class="tablewrap"><table><thead><tr><th>Tanggal</th><th>Keterangan</th><th>Kategori</th><th>Jenis</th><th>Nominal</th><th>Aksi</th></tr></thead><tbody id="kasRows"></tbody></table></div>
+  </section>
+  <section class="section" id="kegiatan">
+   <div class="welcome"><div><h1>Kegiatan Warga</h1><p>Kelola agenda, kerja bakti, rapat, olahraga, dan acara lingkungan.</p></div><button class="btn primary" onclick="openModal('kegiatan')">＋ Buat kegiatan</button></div>
+   <div class="toolbar"><input class="search" id="searchEvent" placeholder="Cari kegiatan..." oninput="renderEvents()"></div><div class="cards" id="eventCards"></div>
+  </section>
+  <section class="section" id="info">
+   <div class="welcome"><div><h1>Papan Informasi</h1><p>Pengumuman resmi dan informasi penting untuk seluruh warga.</p></div><button class="btn primary" onclick="openModal('info')">＋ Buat pengumuman</button></div>
+   <div id="infoCards"></div>
+  </section>
+  <section class="section" id="pengaduan">
+   <div class="welcome"><div><h1>Aspirasi & Pengaduan</h1><p>Catat masukan, keluhan fasilitas, keamanan, dan kebutuhan lingkungan.</p></div><button class="btn primary" onclick="openModal('pengaduan')">＋ Tambah aspirasi</button></div>
+   <div class="notice">Untuk keadaan darurat atau ancaman keselamatan, segera hubungi layanan darurat/petugas terkait. Fitur ini bukan kanal tanggap darurat.</div>
+   <div class="tablewrap"><table><thead><tr><th>Tanggal</th><th>Pelapor</th><th>Kategori</th><th>Isi aspirasi</th><th>Status</th><th>Aksi</th></tr></thead><tbody id="aspirasiRows"></tbody></table></div>
+  </section>
+  <section class="section" id="dokumen">
+   <div class="welcome"><div><h1>Dokumen Lingkungan</h1><p>Daftar dokumen dan administrasi yang perlu dikelola pengurus.</p></div><button class="btn primary" onclick="openModal('dokumen')">＋ Tambah dokumen</button></div>
+   <div class="notice">Simpan tautan dokumen pada penyimpanan yang aksesnya dibatasi. Hindari mengunggah KTP/KK ke tempat publik.</div>
+   <div class="tablewrap"><table><thead><tr><th>Nama dokumen</th><th>Kategori</th><th>Tanggal</th><th>Catatan / tautan</th><th>Aksi</th></tr></thead><tbody id="docRows"></tbody></table></div>
+  </section>
+  <div class="footer">WargaPSI · Portal Administrasi Perumahan · Data tersimpan pada browser/perangkat ini</div>
+ </div>
+</main></div>
+<div class="modal" id="modal"><div class="modalbox"><div class="modalhead"><h2 id="modalTitle">Tambah data</h2><button class="close" onclick="closeModal()">✕</button></div><form id="dataForm" onsubmit="saveForm(event)"><div class="formgrid" id="formFields"></div><div class="modalactions"><button type="button" class="btn" onclick="closeModal()">Batal</button><button class="btn primary" type="submit">Simpan data</button></div></form></div></div>
 <script>
-    const e = React.createElement;
-    const { useState, useEffect, useMemo } = React;
-
-    // --- INITIAL MOCK DATA ---
-    const INITIAL_WARGA = [
-      { id: 1, nik: '3276011203850001', nama: 'Budi Santoso', blok: 'A1-05', hp: '081234567890', status: 'Tetap', anggota: 4, pekerjaan: 'Karyawan Swasta' },
-      { id: 2, nik: '3276012408900002', nama: 'Siti Rahmawati', blok: 'A1-08', hp: '081987654321', status: 'Tetap', anggota: 3, pekerjaan: 'PNS / ASN' },
-      { id: 3, nik: '3276010511880003', nama: 'Ahmad Dahlan', blok: 'B2-12', hp: '085678901234', status: 'Kontrak', anggota: 2, pekerjaan: 'Wiraswasta' },
-      { id: 4, nik: '3276011902920004', nama: 'Dr. Dian Sastro', blok: 'B2-15', hp: '087812345678', status: 'Tetap', anggota: 5, pekerjaan: 'Tenaga Medis' },
-      { id: 5, nik: '3276013007870005', nama: 'Eko Prasetyo', blok: 'C3-01', hp: '081398765432', status: 'Kontrak', anggota: 1, pekerjaan: 'Software Engineer' }
-    ];
-
-    const INITIAL_KAS = [
-      { id: 1, tanggal: '2026-11-01', jenis: 'Masuk', kategori: 'Iuran Warga', nominal: 1850000, keterangan: 'Penerimaan Iuran Kebersihan & Keamanan Blok A (Nov)' },
-      { id: 2, tanggal: '2026-11-02', jenis: 'Keluar', kategori: 'Pemeliharaan', nominal: 420000, keterangan: 'Perbaikan Penerangan Pintu Pos Barat' },
-      { id: 3, tanggal: '2026-10-28', jenis: 'Masuk', kategori: 'Donasi', nominal: 750000, keterangan: 'Sumbangan Usaha UMKM Kegiatan Warga' },
-      { id: 4, tanggal: '2026-10-25', jenis: 'Keluar', kategori: 'Kebersihan', nominal: 650000, keterangan: 'Honor Pengangkutan Sampah Musiman' }
-    ];
-
-    const INITIAL_KEGIATAN = [
-      { id: 1, nama: 'Kerja Bakti Lingkungan & Reboisasi', tanggal: '2026-11-08', waktu: '07:00 - 10:30 WIB', lokasi: 'Taman Publik Blok B', pj: 'Seksi Lingkungan', anggaran: 'Rp 400.000', status: 'Mendatang' },
-      { id: 2, nama: 'Musyawarah Triwulan Warga RT 04', tanggal: '2026-11-14', waktu: '19:30 WIB - Selesai', lokasi: 'Balai Warga Utama', pj: 'Pengurus RT 04', anggaran: 'Rp 250.000', status: 'Mendatang' }
-    ];
-
-    const INITIAL_INFO = [
-      { id: 1, judul: 'Jadwal Penyesuaian Pengambilan Sampah', tanggal: '2026-11-01', prioritas: 'Penting', penulis: 'Sekretariat RT', isi: 'Berhubung adanya libur nasional, pengangkutan sampah rumah tangga dimajukan satu hari lebih awal.' },
-      { id: 2, judul: 'Himbauan Kamtibmas & Pengetatan Portal Malam', tanggal: '2026-10-29', prioritas: 'Urgent', penulis: 'Koordinator Keamanan', isi: 'Portal akses utama akan dikunci otomatis mulai pukul 22:30 WIB.' }
-    ];
-
-    const INITIAL_PENGADUAN = [
-      { id: 1, tanggal: '2026-11-01', pelapor: 'Ahmad Dahlan (B2-12)', kategori: 'Infrastruktur', judul: 'Lampu Penerangan Jalan Utama Blok B2 Padam', status: 'Diproses', respon: 'Tim teknisi telah dihubungi dan dijadwalkan perbaikan sore ini.' }
-    ];
-
-    const INITIAL_DARURAT = [
-      { id: 1, nama: 'Pos Keamanan Utama (Satpam 24 Jam)', hp: '0812-9988-7766', deskripsi: 'Siaga 24 Jam - Gerbang Utama' },
-      { id: 2, nama: 'Ketua RT 04 (Bpk. Budi Santoso)', hp: '0812-3456-7890', deskripsi: 'Pelayanan Administrasi Warga' },
-      { id: 3, nama: 'Layanan Ambulans & Gawat Darurat', hp: '118', deskripsi: 'Penanganan Medis Darurat Kritis' },
-      { id: 4, nama: 'Polsek Sektor Perumahan', hp: '110', deskripsi: 'Laporan Gangguan Keamanan' }
-    ];
-
-    function App() {
-      const [warga, setWarga] = useState(() => JSON.parse(localStorage.getItem('wk_warga')) || INITIAL_WARGA);
-      const [kas, setKas] = useState(() => JSON.parse(localStorage.getItem('wk_kas')) || INITIAL_KAS);
-      const [kegiatan, setKegiatan] = useState(() => JSON.parse(localStorage.getItem('wk_kegiatan')) || INITIAL_KEGIATAN);
-      const [info, setInfo] = useState(() => JSON.parse(localStorage.getItem('wk_info')) || INITIAL_INFO);
-      const [pengaduan, setPengaduan] = useState(() => JSON.parse(localStorage.getItem('wk_pengaduan')) || INITIAL_PENGADUAN);
-      const [darurat, setDarurat] = useState(() => JSON.parse(localStorage.getItem('wk_darurat')) || INITIAL_DARURAT);
-
-      const [activeTab, setActiveTab] = useState('dashboard');
-      const [isAdmin, setIsAdmin] = useState(true);
-      const [searchWarga, setSearchWarga] = useState('');
-      const [showModalWarga, setShowModalWarga] = useState(false);
-      const [formWarga, setFormWarga] = useState({ nik: '', nama: '', blok: '', hp: '', status: 'Tetap', anggota: 1, pekerjaan: '' });
-
-      useEffect(() => {
-        localStorage.setItem('wk_warga', JSON.stringify(warga));
-        localStorage.setItem('wk_kas', JSON.stringify(kas));
-        localStorage.setItem('wk_kegiatan', JSON.stringify(kegiatan));
-        localStorage.setItem('wk_info', JSON.stringify(info));
-        localStorage.setItem('wk_pengaduan', JSON.stringify(pengaduan));
-        localStorage.setItem('wk_darurat', JSON.stringify(darurat));
-      }, [warga, kas, kegiatan, info, pengaduan, darurat]);
-
-      const totalMasuk = kas.filter(k => k.jenis === 'Masuk').reduce((acc, c) => acc + c.nominal, 0);
-      const totalKeluar = kas.filter(k => k.jenis === 'Keluar').reduce((acc, c) => acc + c.nominal, 0);
-      const saldoKas = totalMasuk - totalKeluar;
-
-      const formatRupiah = (val) => new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(val);
-
-      const filteredWarga = warga.filter(w => 
-        w.nama.toLowerCase().includes(searchWarga.toLowerCase()) || 
-        w.blok.toLowerCase().includes(searchWarga.toLowerCase()) ||
-        w.nik.includes(searchWarga)
-      );
-
-      const handleAddWarga = (ev) => {
-        ev.preventDefault();
-        setWarga([...warga, { ...formWarga, id: Date.now() }]);
-        setFormWarga({ nik: '', nama: '', blok: '', hp: '', status: 'Tetap', anggota: 1, pekerjaan: '' });
-        setShowModalWarga(false);
-      };
-
-      const handleDeleteWarga = (id) => {
-        if (confirm("Apakah Anda yakin ingin menghapus data warga ini?")) {
-          setWarga(warga.filter(w => w.id !== id));
-        }
-      };
-
-      return e('div', { className: 'min-h-screen flex flex-col md:flex-row bg-slate-50' },
-        // SIDEBAR
-        e('aside', { className: 'w-full md:w-64 bg-slate-900 text-slate-300 p-5 flex flex-col justify-between shrink-0 shadow-lg' },
-          e('div', null,
-            e('div', { className: 'flex items-center space-x-3 mb-8' },
-              e('div', { className: 'w-9 h-9 rounded-xl bg-emerald-600 flex items-center justify-center text-white font-bold text-lg shadow-md' }, 'W'),
-              e('div', null,
-                e('h1', { className: 'font-bold text-base text-white tracking-tight' }, 'WargaPSI'),
-                e('p', { className: 'text-[11px] text-slate-400 font-medium' }, 'RT 01 / RW 01 Online')
-              )
-            ),
-            e('nav', { className: 'space-y-1' },
-              [
-                { id: 'dashboard', label: 'Overview', icon: '📊' },
-                { id: 'warga', label: 'Data Warga', icon: '👥' },
-                { id: 'kas', label: 'Laporan Kas', icon: '💳' },
-                { id: 'kegiatan', label: 'Kegiatan RT', icon: '📅' },
-                { id: 'info', label: 'Pengumuman', icon: '📢' },
-                { id: 'pengaduan', label: 'Helpdesk', icon: '🔔' },
-                { id: 'darurat', label: 'Kontak Darurat', icon: '📞' }
-              ].map(tab => 
-                e('button', {
-                  key: tab.id,
-                  onClick: () => setActiveTab(tab.id),
-                  className: `w-full flex items-center space-x-3 px-3 py-2.5 rounded-xl text-xs font-semibold transition-all ${
-                    activeTab === tab.id ? 'bg-emerald-600 text-white shadow-sm' : 'text-slate-400 hover:bg-slate-800 hover:text-slate-200'
-                  }`
-                },
-                  e('span', null, tab.icon),
-                  e('span', null, tab.label)
-                )
-              )
-            )
-          ),
-          e('div', { className: 'pt-4 border-t border-slate-800' },
-            e('div', { className: 'p-3 rounded-xl bg-slate-800/80 border border-slate-700/60 flex items-center justify-between text-xs' },
-              e('div', null,
-                e('p', { className: 'font-semibold text-slate-200' }, 'Hak Akses'),
-                e('p', { className: 'text-[10px] text-slate-400' }, isAdmin ? 'Mode Admin / Pengurus' : 'Mode Warga Biasa')
-              ),
-              e('input', {
-                type: 'checkbox',
-                checked: isAdmin,
-                onChange: () => setIsAdmin(!isAdmin),
-                className: 'w-4 h-4 accent-emerald-600 cursor-pointer'
-              })
-            )
-          )
-        ),
-
-        // MAIN CONTENT CONTAINER
-        e('main', { className: 'flex-1 p-5 md:p-8 overflow-y-auto max-w-7xl mx-auto w-full' },
-          // Header Bar
-          e('header', { className: 'flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 bg-white p-4 rounded-2xl border border-slate-200/80 shadow-xs' },
-            e('div', null,
-              e('h2', { className: 'text-lg font-bold text-slate-900 capitalize' }, `Modul ${activeTab}`),
-              e('p', { className: 'text-xs text-slate-400' }, 'Sistem Informasi Pengelolaan Lingkungan Perumahan')
-            ),
-            e('div', { className: 'flex items-center space-x-2' },
-              e('span', { className: `text-[11px] font-semibold px-3 py-1 rounded-full border ${isAdmin ? 'bg-emerald-50 text-emerald-700 border-emerald-200' : 'bg-slate-100 text-slate-600 border-slate-200'}` },
-                isAdmin ? ' Mode Pengurus Aktif' : ' Access Only (Warga)'
-              )
-            )
-          ),
-
-          // TAB: DASHBOARD
-          activeTab === 'dashboard' && e('div', { className: 'space-y-6' },
-            e('div', { className: 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4' },
-              e('div', { className: 'bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs' },
-                e('p', { className: 'text-xs text-slate-400 font-medium' }, 'TOTAL WARGA'),
-                e('h3', { className: 'text-2xl font-bold text-slate-900 mt-1' }, `${warga.length} Jiwa`),
-                e('p', { className: 'text-[11px] text-emerald-600 mt-1 font-medium' }, 'Terdaftar di database RT')
-              ),
-              e('div', { className: 'bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs' },
-                e('p', { className: 'text-xs text-slate-400 font-medium' }, 'SALDO KAS RT'),
-                e('h3', { className: 'text-xl font-bold text-emerald-600 mt-1' }, formatRupiah(saldoKas)),
-                e('p', { className: 'text-[11px] text-slate-400 mt-1' }, `Masuk: ${formatRupiah(totalMasuk)}`)
-              ),
-              e('div', { className: 'bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs' },
-                e('p', { className: 'text-xs text-slate-400 font-medium' }, 'AGENDA KEGIATAN'),
-                e('h3', { className: 'text-2xl font-bold text-slate-900 mt-1' }, `${kegiatan.length} Acara`),
-                e('p', { className: 'text-[11px] text-slate-400 mt-1' }, 'Mendatang bulan ini')
-              ),
-              e('div', { className: 'bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs' },
-                e('p', { className: 'text-xs text-slate-400 font-medium' }, 'PENGADUAN AKTIF'),
-                e('h3', { className: 'text-2xl font-bold text-amber-600 mt-1' }, `${pengaduan.filter(p=>p.status!=='Selesai').length} Laporan`),
-                e('p', { className: 'text-[11px] text-amber-600 mt-1' }, 'Perlu perhatian pengurus')
-              )
-            ),
-
-            e('div', { className: 'grid grid-cols-1 lg:grid-cols-2 gap-6' },
-              e('div', { className: 'bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs space-y-3' },
-                e('h4', { className: 'font-bold text-sm text-slate-900 border-b pb-2' }, 'Pengumuman Terbaru'),
-                info.map(i => e('div', { key: i.id, className: 'p-3 bg-slate-50 rounded-xl border border-slate-100 space-y-1' },
-                  e('div', { className: 'flex justify-between items-center text-[10px]' },
-                    e('span', { className: 'font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded border border-amber-200' }, i.prioritas),
-                    e('span', { className: 'text-slate-400' }, i.tanggal)
-                  ),
-                  e('h5', { className: 'font-semibold text-xs text-slate-800' }, i.judul),
-                  e('p', { className: 'text-xs text-slate-500 line-clamp-2' }, i.isi)
-                ))
-              ),
-              e('div', { className: 'bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs space-y-3' },
-                e('h4', { className: 'font-bold text-sm text-slate-900 border-b pb-2' }, 'Agenda Mendatang'),
-                kegiatan.map(k => e('div', { key: k.id, className: 'p-3 bg-slate-50 rounded-xl border border-slate-100 space-y-1' },
-                  e('span', { className: 'text-[10px] bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded font-semibold border border-emerald-200' }, k.status),
-                  e('h5', { className: 'font-semibold text-xs text-slate-800' }, k.nama),
-                  e('p', { className: 'text-xs text-slate-500' }, `📅 ${k.tanggal} • 📍 ${k.lokasi}`)
-                ))
-              )
-            )
-          ),
-
-          // TAB: DATA WARGA
-          activeTab === 'warga' && e('div', { className: 'space-y-4' },
-            e('div', { className: 'flex flex-col sm:flex-row justify-between items-center gap-3' },
-              e('input', {
-                type: 'text',
-                placeholder: 'Cari Nama, NIK, atau Blok...',
-                value: searchWarga,
-                onChange: (ev) => setSearchWarga(ev.target.value),
-                className: 'w-full sm:w-72 px-3.5 py-1.5 text-xs rounded-xl border border-slate-200 focus:outline-none focus:ring-1 focus:ring-emerald-500 bg-white'
-              }),
-              isAdmin && e('button', {
-                onClick: () => setShowModalWarga(true),
-                className: 'w-full sm:w-auto px-4 py-2 text-xs font-semibold bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition shadow-xs'
-              }, '+ Tambah Data Warga')
-            ),
-
-            e('div', { className: 'bg-white rounded-2xl border border-slate-200/90 overflow-hidden shadow-xs' },
-              e('div', { className: 'overflow-x-auto' },
-                e('table', { className: 'w-full text-left text-xs border-collapse' },
-                  e('thead', { className: 'bg-slate-50 border-b border-slate-200 text-slate-500 font-semibold' },
-                    e('tr', null,
-                      e('th', { className: 'p-3 pl-4' }, 'Nama / NIK'),
-                      e('th', { className: 'p-3' }, 'Blok'),
-                      e('th', { className: 'p-3' }, 'No. Telepon'),
-                      e('th', { className: 'p-3' }, 'Status'),
-                      e('th', { className: 'p-3' }, 'Anggota'),
-                      e('th', { className: 'p-3' }, 'Pekerjaan'),
-                      isAdmin && e('th', { className: 'p-3 pr-4 text-center' }, 'Aksi')
-                    )
-                  ),
-                  e('tbody', { className: 'divide-y divide-slate-100' },
-                    filteredWarga.map(w => e('tr', { key: w.id, className: 'hover:bg-slate-50/60' },
-                      e('td', { className: 'p-3 pl-4' },
-                        e('div', { className: 'font-semibold text-slate-900' }, w.nama),
-                        e('div', { className: 'text-[10px] text-slate-400 font-mono' }, w.nik)
-                      ),
-                      e('td', { className: 'p-3 font-semibold text-emerald-600' }, w.blok),
-                      e('td', { className: 'p-3 font-mono text-[11px]' }, w.hp),
-                      e('td', { className: 'p-3' },
-                        e('span', { className: `px-2 py-0.5 rounded text-[10px] font-semibold border ${w.status==='Tetap'?'bg-slate-100 text-slate-700 border-slate-200':'bg-amber-50 text-amber-700 border-amber-200'}` }, w.status)
-                      ),
-                      e('td', { className: 'p-3' }, `${w.anggota} Orang`),
-                      e('td', { className: 'p-3 text-slate-500' }, w.pekerjaan || '-'),
-                      isAdmin && e('td', { className: 'p-3 pr-4 text-center' },
-                        e('button', {
-                          onClick: () => handleDeleteWarga(w.id),
-                          className: 'px-2 py-1 text-[10px] font-bold text-rose-600 hover:bg-rose-50 rounded'
-                        }, 'Hapus')
-                      )
-                    ))
-                  )
-                )
-              )
-            )
-          ),
-
-          // TAB: KAS
-          activeTab === 'kas' && e('div', { className: 'space-y-4' },
-            e('div', { className: 'grid grid-cols-1 md:grid-cols-3 gap-4' },
-              e('div', { className: 'p-4 rounded-2xl bg-white border border-slate-200/80 shadow-xs' },
-                e('p', { className: 'text-xs text-slate-400 font-medium' }, 'Pemasukan Kas'),
-                e('p', { className: 'text-lg font-bold text-emerald-600 mt-1' }, formatRupiah(totalMasuk))
-              ),
-              e('div', { className: 'p-4 rounded-2xl bg-white border border-slate-200/80 shadow-xs' },
-                e('p', { className: 'text-xs text-slate-400 font-medium' }, 'Pengeluaran Kas'),
-                e('p', { className: 'text-lg font-bold text-rose-600 mt-1' }, formatRupiah(totalKeluar))
-              ),
-              e('div', { className: 'p-4 rounded-2xl bg-white border border-slate-200/80 shadow-xs' },
-                e('p', { className: 'text-xs text-slate-400 font-medium' }, 'Saldo Bersih Kas'),
-                e('p', { className: 'text-lg font-bold text-slate-900 mt-1' }, formatRupiah(saldoKas))
-              )
-            ),
-
-            e('div', { className: 'bg-white rounded-2xl border border-slate-200/90 overflow-hidden shadow-xs' },
-              e('div', { className: 'p-4 border-b border-slate-100 font-semibold text-xs text-slate-800' }, 'Riwayat Arus Transaksi Kas'),
-              e('div', { className: 'overflow-x-auto' },
-                e('table', { className: 'w-full text-left text-xs border-collapse' },
-                  e('thead', { className: 'bg-slate-50 border-b border-slate-200 text-slate-500 uppercase text-[10px]' },
-                    e('tr', null,
-                      e('th', { className: 'p-3 pl-4' }, 'Tanggal'),
-                      e('th', { className: 'p-3' }, 'Jenis'),
-                      e('th', { className: 'p-3' }, 'Kategori'),
-                      e('th', { className: 'p-3' }, 'Keterangan'),
-                      e('th', { className: 'p-3 text-right pr-4' }, 'Nominal')
-                    )
-                  ),
-                  e('tbody', { className: 'divide-y divide-slate-100' },
-                    kas.map(k => e('tr', { key: k.id, className: 'hover:bg-slate-50/50' },
-                      e('td', { className: 'p-3 pl-4 text-slate-400' }, k.tanggal),
-                      e('td', { className: 'p-3' },
-                        e('span', { className: `px-2 py-0.5 rounded text-[10px] font-bold border ${k.jenis==='Masuk'?'bg-emerald-50 text-emerald-700 border-emerald-200':'bg-rose-50 text-rose-700 border-rose-200'}` }, k.jenis)
-                      ),
-                      e('td', { className: 'p-3 font-medium' }, k.kategori),
-                      e('td', { className: 'p-3 text-slate-500' }, k.keterangan),
-                      e('td', { className: `p-3 text-right pr-4 font-bold ${k.jenis==='Masuk'?'text-emerald-600':'text-rose-600'}` },
-                        `${k.jenis==='Masuk'?'+':'-'} ${formatRupiah(k.nominal)}`
-                      )
-                    ))
-                  )
-                )
-              )
-            )
-          ),
-
-          // TAB: KEGIATAN
-          activeTab === 'kegiatan' && e('div', { className: 'grid grid-cols-1 md:grid-cols-2 gap-4' },
-            kegiatan.map(k => e('div', { key: k.id, className: 'bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs space-y-2' },
-              e('span', { className: 'text-[10px] bg-emerald-50 text-emerald-700 px-2.5 py-0.5 rounded-md font-semibold border border-emerald-200' }, k.status),
-              e('h4', { className: 'font-semibold text-sm text-slate-900' }, k.nama),
-              e('div', { className: 'text-xs text-slate-500 space-y-1' },
-                e('p', null, `📅 ${k.tanggal} (${k.waktu})`),
-                e('p', null, `📍 Lokasi: ${k.lokasi}`),
-                e('p', null, `👤 Penanggung Jawab: ${k.pj}`)
-              )
-            ))
-          ),
-
-          // TAB: PENGUMUMAN
-          activeTab === 'info' && e('div', { className: 'grid grid-cols-1 md:grid-cols-2 gap-4' },
-            info.map(i => e('div', { key: i.id, className: 'bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs space-y-2' },
-              e('div', { className: 'flex justify-between items-center' },
-                e('span', { className: 'text-[10px] bg-amber-50 text-amber-700 px-2 py-0.5 rounded font-bold border border-amber-200' }, i.prioritas),
-                e('span', { className: 'text-[11px] text-slate-400' }, i.tanggal)
-              ),
-              e('h4', { className: 'font-semibold text-sm text-slate-900' }, i.judul),
-              e('p', { className: 'text-xs text-slate-500 leading-relaxed' }, i.isi)
-            ))
-          ),
-
-          // TAB: HELPDESK / PENGADUAN
-          activeTab === 'pengaduan' && e('div', { className: 'space-y-3' },
-            pengaduan.map(p => e('div', { key: p.id, className: 'bg-white p-4 rounded-2xl border border-slate-200/80 shadow-xs space-y-2' },
-              e('div', { className: 'flex justify-between items-center text-xs' },
-                e('span', { className: 'font-semibold text-slate-900' }, p.pelapor),
-                e('span', { className: 'px-2 py-0.5 rounded text-[10px] font-semibold bg-sky-50 text-sky-700 border border-sky-200' }, p.status)
-              ),
-              e('h5', { className: 'font-semibold text-xs text-slate-800' }, p.judul),
-              p.respon && e('p', { className: 'text-xs text-emerald-700 bg-emerald-50 p-2.5 rounded-xl border border-emerald-100' }, `Respon RT: ${p.respon}`)
-            ))
-          ),
-
-          // TAB: KONTAK DARURAT
-          activeTab === 'darurat' && e('div', { className: 'grid grid-cols-1 md:grid-cols-2 gap-4' },
-            darurat.map(c => e('div', { key: c.id, className: 'bg-white p-4 rounded-2xl border border-slate-200/80 shadow-xs flex justify-between items-center' },
-              e('div', null,
-                e('h4', { className: 'font-semibold text-xs text-slate-900' }, c.nama),
-                e('p', { className: 'text-[11px] text-slate-400' }, c.deskripsi),
-                e('p', { className: 'text-xs font-mono font-bold text-emerald-600 mt-1' }, `📞 ${c.hp}`)
-              ),
-              e('a', { href: `tel:${c.hp}`, className: 'px-3 py-1.5 bg-slate-900 text-white font-semibold text-xs rounded-xl hover:bg-slate-800 transition' }, 'Hubungi')
-            ))
-          )
-        ),
-
-        // MODAL TAMBAH WARGA
-        showModalWarga && e('div', { className: 'fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/40 backdrop-blur-xs' },
-          e('div', { className: 'bg-white w-full max-w-md rounded-2xl border border-slate-200 shadow-xl p-5 space-y-4' },
-            e('h3', { className: 'font-bold text-sm text-slate-900' }, 'Tambah Warga Baru'),
-            e('form', { onSubmit: handleAddWarga, className: 'space-y-3 text-xs' },
-              e('div', null,
-                e('label', { className: 'block font-semibold text-slate-600 mb-1' }, 'Nama Lengkap'),
-                e('input', { required: true, type: 'text', value: formWarga.nama, onChange: (ev)=>setFormWarga({...formWarga, nama: ev.target.value}), className: 'w-full px-3 py-1.5 border rounded-xl' })
-              ),
-              e('div', { className: 'grid grid-cols-2 gap-3' },
-                e('div', null,
-                  e('label', { className: 'block font-semibold text-slate-600 mb-1' }, 'NIK (16 Digit)'),
-                  e('input', { required: true, type: 'text', value: formWarga.nik, onChange: (ev)=>setFormWarga({...formWarga, nik: ev.target.value}), className: 'w-full px-3 py-1.5 border rounded-xl font-mono' })
-                ),
-                e('div', null,
-                  e('label', { className: 'block font-semibold text-slate-600 mb-1' }, 'Blok / No. Rumah'),
-                  e('input', { required: true, type: 'text', value: formWarga.blok, onChange: (ev)=>setFormWarga({...formWarga, blok: ev.target.value}), className: 'w-full px-3 py-1.5 border rounded-xl' })
-                )
-              ),
-              e('div', { className: 'grid grid-cols-2 gap-3' },
-                e('div', null,
-                  e('label', { className: 'block font-semibold text-slate-600 mb-1' }, 'No. WhatsApp'),
-                  e('input', { required: true, type: 'text', value: formWarga.hp, onChange: (ev)=>setFormWarga({...formWarga, hp: ev.target.value}), className: 'w-full px-3 py-1.5 border rounded-xl font-mono' })
-                ),
-                e('div', null,
-                  e('label', { className: 'block font-semibold text-slate-600 mb-1' }, 'Status Huni'),
-                  e('select', { value: formWarga.status, onChange: (ev)=>setFormWarga({...formWarga, status: ev.target.value}), className: 'w-full px-3 py-1.5 border rounded-xl' },
-                    e('option', { value: 'Tetap' }, 'Tetap'),
-                    e('option', { value: 'Kontrak' }, 'Kontrak')
-                  )
-                )
-              ),
-              e('div', { className: 'flex justify-end space-x-2 pt-2' },
-                e('button', { type: 'button', onClick: ()=>setShowModalWarga(false), className: 'px-3 py-1.5 bg-slate-100 text-slate-600 rounded-xl font-semibold' }, 'Batal'),
-                e('button', { type: 'submit', className: 'px-4 py-1.5 bg-emerald-600 text-white rounded-xl font-semibold' }, 'Simpan Data')
-              )
-            )
-          )
-        )
-      );
-    }
-
-    const root = ReactDOM.createRoot(document.getElementById('root'));
-    root.render(e(App));
-  </script>
-</body>
-</html>
+const $=id=>document.getElementById(id), money=n=>'Rp'+Number(n||0).toLocaleString('id-ID'), today=()=>new Date().toISOString().slice(0,10);
+let db=JSON.parse(localStorage.getItem('wargakita_db')||'null')||{
+ warga:[],kas:[],kegiatan:[],info:[],pengaduan:[],dokumen:[]
+};
+let currentType='',editId=null;
+function persist(){localStorage.setItem('wargakita_db',JSON.stringify(db));renderAll()}
+function id(){return Date.now().toString(36)+Math.random().toString(36).slice(2,6)}
+function go(page){document.querySelectorAll('.section').forEach(x=>x.classList.remove('active'));$(page).classList.add('active');document.querySelectorAll('.nav button').forEach(x=>x.classList.toggle('active',x.dataset.page===page));let labels={dashboard:'Ringkasan',warga:'Data Warga',kas:'Laporan Kas',kegiatan:'Kegiatan Warga',info:'Papan Informasi',pengaduan:'Aspirasi & Pengaduan',dokumen:'Dokumen Lingkungan'};$('topTitle').textContent=labels[page];$('crumb').textContent=labels[page];}
+document.querySelectorAll('.nav button').forEach(b=>b.addEventListener('click',()=>go(b.dataset.page)));
+const fields={
+ warga:[['nama','Nama kepala keluarga','text',1],['blok','Blok / nomor rumah','text',1],['hp','Nomor HP','tel'],['jumlah','Jumlah penghuni','number'],['status','Status hunian','select',['Menetap','Kontrak','Kosong']],['catatan','Catatan','textarea']],
+ kas:[['tanggal','Tanggal transaksi','date',1],['ket','Keterangan','text',1],['kategori','Kategori','select',['Iuran bulanan','Kebersihan','Keamanan','Kegiatan','Perbaikan','Sumbangan','Lainnya']],['jenis','Jenis transaksi','select',['Masuk','Keluar'],1],['nominal','Nominal (Rp)','number',1],['catatan','Catatan tambahan','textarea']],
+ kegiatan:[['nama','Nama kegiatan','text',1],['tanggal','Tanggal','date',1],['waktu','Waktu','text'],['lokasi','Lokasi','text'],['penanggung','Penanggung jawab','text'],['deskripsi','Deskripsi kegiatan','textarea']],
+ info:[['judul','Judul pengumuman','text',1],['tanggal','Tanggal terbit','date',1],['kategori','Kategori','select',['Pengumuman','Pemberitahuan','Jadwal','Darurat']],['isi','Isi informasi','textarea',1]],
+ pengaduan:[['pelapor','Nama pelapor','text',1],['tanggal','Tanggal','date',1],['kategori','Kategori','select',['Keamanan','Kebersihan','Infrastruktur','Ketertiban','Sosial','Lainnya']],['isi','Detail aspirasi / pengaduan','textarea',1],['status','Status','select',['Baru','Diproses','Selesai']]],
+ dokumen:[['nama','Nama dokumen','text',1],['kategori','Kategori','select',['Administrasi','Keuangan','Peraturan','Notulen','Lainnya']],['tanggal','Tanggal','date',1],['tautan','Tautan / lokasi dokumen','text'],['catatan','Catatan','textarea']]
+};
+const titles={warga:'Data Warga',kas:'Transaksi Kas',kegiatan:'Kegiatan Warga',info:'Pengumuman',pengaduan:'Aspirasi & Pengaduan',dokumen:'Dokumen Lingkungan'};
+function openModal(type,record=null){currentType=type;editId=record?.id||null;$('modalTitle').textContent=(record?'Edit ':'Tambah ')+titles[type];$('formFields').innerHTML=fields[type].map(f=>{let [name,label,kind,req,opts]=f;let val=record?.[name]??(name==='tanggal'?today():name==='status'&&type==='pengaduan'?'Baru':'');let control=kind==='select'?`<select name="${name}">${opts.map(o=>`<option ${val===o?'selected':''}>${o}</option>`).join('')}</select>`:kind==='textarea'?`<textarea name="${name}" ${req===1?'required':''}>${esc(val)}</textarea>`:`<input name="${name}" type="${kind}" value="${esc(val)}" ${req===1?'required':''} ${kind==='number'?'min="0"':''}>`;return `<div class="field ${kind==='textarea'?'full':''}"><label>${label}${req===1?' *':''}</label>${control}</div>`}).join('');$('modal').classList.add('show')}
+function closeModal(){$('modal').classList.remove('show')}
+function saveForm(e){e.preventDefault();let obj=Object.fromEntries(new FormData(e.target).entries());if(obj.nominal)obj.nominal=Number(obj.nominal);if(currentType==='pengaduan'&&!obj.status)obj.status='Baru';if(editId){db[currentType]=db[currentType].map(x=>x.id===editId?{...x,...obj}:x)}else db[currentType].unshift({id:id(),...obj});closeModal();persist()}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function del(type,key){if(confirm('Hapus data ini? Tindakan tidak dapat dibatalkan.')){db[type]=db[type].filter(x=>x.id!==key);persist()}}
+function edit(type,key){let r=db[type].find(x=>x.id===key);if(r)openModal(type,r)}
+function renderWarga(){let q=($('searchWarga')?.value||'').toLowerCase(),s=$('filterStatus')?.value||'';let rows=db.warga.filter(x=>(`${x.nama} ${x.blok} ${x.hp}`.toLowerCase().includes(q))&&(!s||x.status===s));$('wargaRows').innerHTML=rows.length?rows.map(x=>`<tr><td><b>${esc(x.nama)}</b></td><td>${esc(x.blok)}</td><td>${esc(x.hp||'-')}</td><td>${esc(x.jumlah||'-')}</td><td><span class="tag">${esc(x.status||'-')}</span></td><td><button class="btn" onclick="edit('warga','${x.id}')">Edit</button> <button class="btn danger" onclick="del('warga','${x.id}')">Hapus</button></td></tr>`).join(''):'<tr><td colspan="6" class="empty">Belum ada data warga. Klik “Tambah data warga” untuk memulai.</td></tr>'}
+function totals(){let masuk=db.kas.filter(x=>x.jenis==='Masuk').reduce((a,x)=>a+Number(x.nominal||0),0),keluar=db.kas.filter(x=>x.jenis==='Keluar').reduce((a,x)=>a+Number(x.nominal||0),0);return{masuk,keluar,saldo:masuk-keluar}}
+function renderKas(){let q=($('searchKas')?.value||'').toLowerCase(),f=$('filterKas')?.value||'',rows=db.kas.filter(x=>(`${x.ket} ${x.kategori}`.toLowerCase().includes(q))&&(!f||x.jenis===f));$('kasRows').innerHTML=rows.length?rows.map(x=>`<tr><td>${esc(x.tanggal)}</td><td><b>${esc(x.ket)}</b></td><td>${esc(x.kategori||'-')}</td><td><span class="tag ${x.jenis==='Masuk'?'green':'orange'}">${x.jenis==='Masuk'?'Pemasukan':'Pengeluaran'}</span></td><td><b>${money(x.nominal)}</b></td><td><button class="btn" onclick="edit('kas','${x.id}')">Edit</button> <button class="btn danger" onclick="del('kas','${x.id}')">Hapus</button></td></tr>`).join(''):'<tr><td colspan="6" class="empty">Belum ada transaksi kas.</td></tr>'}
+function renderEvents(){let q=($('searchEvent')?.value||'').toLowerCase(),rows=db.kegiatan.filter(x=>(`${x.nama} ${x.lokasi}`.toLowerCase().includes(q)));$('eventCards').innerHTML=rows.length?rows.map(x=>`<div class="eventcard"><span class="eventdate">◷ ${esc(x.tanggal)}</span><h3>${esc(x.nama)}</h3><p>${esc(x.deskripsi||'Belum ada deskripsi')}</p><div class="mini">⌖ ${esc(x.lokasi||'Lokasi menyusul')} · ${esc(x.waktu||'Waktu menyusul')}</div><div class="mini" style="margin:8px 0 12px">PIC: ${esc(x.penanggung||'-')}</div><button class="btn" onclick="edit('kegiatan','${x.id}')">Edit</button> <button class="btn danger" onclick="del('kegiatan','${x.id}')">Hapus</button></div>`).join(''):'<div class="panel empty">Belum ada agenda kegiatan.</div>'}
+function renderInfo(){$('infoCards').innerHTML=db.info.length?db.info.map(x=>`<div class="infocard"><div class="mini">${esc(x.kategori||'Informasi')} · ${esc(x.tanggal)}</div><h3>${esc(x.judul)}</h3><p>${esc(x.isi)}</p><div style="margin-top:12px"><button class="btn" onclick="edit('info','${x.id}')">Edit</button> <button class="btn danger" onclick="del('info','${x.id}')">Hapus</button></div></div>`).join(''):'<div class="panel empty">Belum ada pengumuman.</div>'}
+function renderAspirasi(){$('aspirasiRows').innerHTML=db.pengaduan.length?db.pengaduan.map(x=>`<tr><td>${esc(x.tanggal)}</td><td>${esc(x.pelapor)}</td><td>${esc(x.kategori)}</td><td>${esc(x.isi)}</td><td><span class="tag ${x.status==='Selesai'?'green':x.status==='Diproses'?'orange':'red'}">${esc(x.status||'Baru')}</span></td><td><button class="btn" onclick="edit('pengaduan','${x.id}')">Edit</button> <button class="btn danger" onclick="del('pengaduan','${x.id}')">Hapus</button></td></tr>`).join(''):'<tr><td colspan="6" class="empty">Belum ada aspirasi atau pengaduan.</td></tr>'}
+function renderDocs(){$('docRows').innerHTML=db.dokumen.length?db.dokumen.map(x=>`<tr><td><b>${esc(x.nama)}</b></td><td>${esc(x.kategori)}</td><td>${esc(x.tanggal)}</td><td>${x.tautan?`<a href="${esc(x.tautan)}" target="_blank" rel="noopener">Buka tautan</a>`:esc(x.catatan||'-')}</td><td><button class="btn" onclick="edit('dokumen','${x.id}')">Edit</button> <button class="btn danger" onclick="del('dokumen','${x.id}')">Hapus</button></td></tr>`).join(''):'<tr><td colspan="5" class="empty">Belum ada dokumen terdaftar.</td></tr>'}
+function renderDashboard(){let t=totals();$('statWarga').textContent=db.warga.length;$('statSaldo').textContent=money(t.saldo);$('statEvent').textContent=db.kegiatan.filter(x=>x.tanggal>=today()).length;$('statAspirasi').textContent=db.pengaduan.filter(x=>x.status!=='Selesai').length;$('kasMasuk').textContent=money(t.masuk);$('kasKeluar').textContent=money(t.keluar);$('kasSaldo').textContent=money(t.saldo);$('kasCount').textContent=db.kas.length;
+ let recent=[...db.kas.map(x=>({date:x.tanggal,text:'Transaksi kas: '+x.ket})),...db.info.map(x=>({date:x.tanggal,text:'Pengumuman: '+x.judul})),...db.kegiatan.map(x=>({date:x.tanggal,text:'Agenda: '+x.nama}))].sort((a,b)=>b.date.localeCompare(a.date)).slice(0,5);$('recent').innerHTML=recent.length?recent.map(x=>`<div class="activity"><span class="dot"></span><div><b>${esc(x.text)}</b><p>${esc(x.date)}</p></div></div>`).join(''):'<div class="empty">Aktivitas akan tampil setelah data ditambahkan.</div>';
+ let months=['Mei','Jun','Jul','Agu','Sep','Okt'],vals=months.map((m,i)=>{let d=new Date();d.setMonth(d.getMonth()-(5-i));let mm=String(d.getMonth()+1).padStart(2,'0'),yy=d.getFullYear();return db.kas.filter(x=>x.tanggal?.startsWith(`${yy}-${mm}`)).reduce((a,x)=>a+(x.jenis==='Masuk'?1:-1)*Number(x.nominal||0),0)}),max=Math.max(1,...vals.map(Math.abs));$('cashBars').innerHTML=vals.map((v,i)=>`<div class="barcol"><div class="bar" style="height:${Math.max(3,Math.abs(v)/max*115)}px" title="${money(v)}"></div><small>${months[i]}</small></div>`).join('');
+}
+function renderAll(){renderDashboard();renderWarga();renderKas();renderEvents();renderInfo();renderAspirasi();renderDocs()}
+function exportCSV(type){let rows=db[type],headers=Object.keys(fields[type].reduce((a,f)=>(a[f[0]]=1,a),{}));let csv=[headers.join(','),...rows.map(r=>headers.map(h=>'"'+String(r[h]??'').replace(/"/g,'""')+'"').join(','))].join('\n');download(csv,type+'-wargakita.csv','text/csv;charset=utf-8;')}
+function exportAll(){download(JSON.stringify(db,null,2),'backup-wargakita-'+today()+'.json','application/json')}
+function download(data,name,type){let a=document.createElement('a'),u=URL.createObjectURL(new Blob(['\ufeff',data],{type}));a.href=u;a.download=name;a.click();URL.revokeObjectURL(u)}
+renderAll();
+</script>
+</body></html>
